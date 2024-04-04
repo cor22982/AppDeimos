@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5'; // Importa los iconos de FontAwesome5
 
-const CustomInput = ({name,iconname,type}) => {
+const CustomInput = ({name,iconname,type,onChange,value}) => {
   let keyboardType = 'default';
   let secureTextEntry = false;
   let textContentType = 'none';
@@ -22,7 +22,9 @@ const CustomInput = ({name,iconname,type}) => {
       placeholderTextColor="#6580A5"
       keyboardType={keyboardType}
       secureTextEntry={secureTextEntry}
-      textContentType={textContentType}/>
+      textContentType={textContentType}
+      onChangeText={(value) => onChange(value)}
+      value={value}/>
     </View>
   );
 };

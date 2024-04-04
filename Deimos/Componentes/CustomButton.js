@@ -1,8 +1,9 @@
 import { TouchableHighlight, StyleSheet, Text } from 'react-native';
 
-const CustomButton = ({ name }) => {
+const CustomButton = ({ name,onClick }) => {
   return (
-    <TouchableHighlight style={styles.button} underlayColor="#041D3F">
+    <TouchableHighlight style={styles.button} underlayColor="#041D3F"
+    onPress={onClick}>
       <Text style={styles.text}>{name}</Text>
     </TouchableHighlight>
   );

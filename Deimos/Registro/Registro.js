@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import CustomButton from '../Componentes/CustomButton';
 import CustomInput from '../Componentes/CustomInput';
-const Registro = () => {
+const Registro = ({setLoggedIn}) => {
   return (
     <View style={stylesinicio.container}>
       <View style={stylesinicio.circle}>
@@ -33,7 +33,7 @@ const stylesinicio = StyleSheet.create({
     borderRadius: 500, // La mitad del ancho y altura para formar un círculo
     backgroundColor: '#0069AD',
     alignItems: 'center', 
-    transform: [{ translateY: -640 }],
+    transform: [{ translateY: -660 }],
   },
   texto: {
     color: 'white',
