@@ -1,7 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
 import CustomButton from '../Componentes/CustomButton';
 import CustomInput from '../Componentes/CustomInput';
-const IniciarSesion = () => {
+const IniciarSesion = ({navigation}) => {
+  const handleRegistroPress = () => {
+    navigation.navigate('Registro');
+  };
   return (
     <View style={stylesinicio.container}>
       <View style={stylesinicio.circle}>
@@ -9,6 +12,12 @@ const IniciarSesion = () => {
       </View>
       <CustomInput name="Ingresar dpi" iconname="address-card" type="text" />
       <CustomInput name="Ingresar contraseña" iconname="lock" type="password"/>
+      <Text style= {stylesinicio.textodescrip}>
+        ¿No tienes cuenta?{' '}
+        <TouchableOpacity onPress={handleRegistroPress}>
+          <Text style={stylesinicio.link}>Regístrate aquí</Text>
+        </TouchableOpacity>
+      </Text>
       <CustomButton name='Ingresar' ></CustomButton>
       
     </View>
@@ -37,6 +46,14 @@ const stylesinicio = StyleSheet.create({
     fontSize: 70,
     fontWeight: 'bold',
     marginTop: 570,
+  },
+  link: {
+    color: 'blue',
+    textDecorationLine: 'underline',
+    fontSize: 20,
+  },
+  textodescrip:{
+    fontSize: 20,
   },
   
 });
