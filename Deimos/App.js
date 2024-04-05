@@ -9,28 +9,30 @@ import Registro from './Registro/Registro';
 const Stack = createStackNavigator();
 
 export default function App() {
-  const [loggedin, setLoggedIn] = useState(
-    AsyncStorage.getItem('loggedin') === 'true'
-  );
+  const [loggedin, setLoggedIn] = useState(false); // Inicializa con false
 
   useEffect(() => {
-    AsyncStorage.setItem('loggedin', loggedin);
-  }, [loggedin]);
+    AsyncStorage.getItem('loggedin').then(value => {
+      setLoggedIn(value === 'true');
+    });
+  }, []); // Solo se ejecuta una vez al cargar el componente
 
-  const renderScreen = () => {
-    return loggedin ? <Text>HOME</Text> : <IniciarSesion setLoggedIn={setLoggedIn} />;
-  };
-
-  const renderRegistro = () => {
-    return loggedin ? <Text>HOME</Text> : <Registro setLoggedIn={setLoggedIn} />;
-  };
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="IniciarSesion" component={renderScreen} />
-        <Stack.Screen name="Registro" component={renderRegistro} />
+        <Stack.Screen
+          name="IniciarSesion"
+          component={IniciarSesion}
+          initialParams={{ setLoggedIn: setLoggedIn }}
+        />
+        <Stack.Screen
+          name="Registro"
+          component={Registro}
+          initialParams={{ setLoggedIn: setLoggedIn }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
+  
 }

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
 import CustomButton from '../Componentes/CustomButton';
 import CustomInput from '../Componentes/CustomInput';
 import { md5 } from 'js-md5'
-const IniciarSesion = ({navigation,setLoggedIn}) => {
+const IniciarSesion = ({navigation,route}) => {
   const [formState, setFormState] = useState({ pi: '', password: '' })
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -34,7 +34,7 @@ const IniciarSesion = ({navigation,setLoggedIn}) => {
     // Aquí puedes agregar la lógica que desees ejecutar cuando el botón sea clicado
     if (response.ok) {
       console.log('success!')
-      setLoggedIn(true)
+      route.params.setLoggedIn(true)
       setErrorMessage('')
       return
     }
