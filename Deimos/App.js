@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Importa AsyncStorage
 import IniciarSesion from './IniciarSesion/IniciarSesion';
 import Registro from './Registro/Registro';
-
+import Home from './Home/Home';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -17,22 +17,30 @@ export default function App() {
     });
   }, []); // Solo se ejecuta una vez al cargar el componente
 
-
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="IniciarSesion"
-          component={IniciarSesion}
-          initialParams={{ setLoggedIn: setLoggedIn }}
-        />
-        <Stack.Screen
-          name="Registro"
-          component={Registro}
-          initialParams={{ setLoggedIn: setLoggedIn }}
-        />
+        {loggedin ? (
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            
+          />
+        ) : (
+          <>
+            <Stack.Screen
+              name="IniciarSesion"
+              component={IniciarSesion}
+              initialParams={{ setLoggedIn: setLoggedIn }}
+            />
+            <Stack.Screen
+              name="Registro"
+              component={Registro}
+              initialParams={{ setLoggedIn: setLoggedIn }}
+            />
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
-  
 }
